@@ -1,23 +1,52 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
-function Planeteer() {
+function Planeteer( {name, fromUSA, born, bio, quote, pictureUrl, twitter}) {
+
+  ///props passed successfully from container
+  // console.log(key)
+  // console.log(name)
+  // console.log(fromUSA)
+  // console.log(born)
+  // console.log(quote)
+  // console.log(pictureUrl)
+  // console.log(twitter)
+
+  function setBase (loc) {
+    if (loc = fromUSA) {
+      return "USA Based"
+    } else {
+      return "Working overseas"
+    }
+  }
+
+
+
+  const [display, setDisplay] = useState("true")
+  
+  function handleDisplay() {
+setDisplay(!display)
+// console.log(display)
+// display stat working successfully
+  }
+
+
   return (
     <li className="cards__item">
-      <div className="card">
+      <div onClick={handleDisplay} className="card">
         <img
-          src={"RENDER IMAGE"}
-          alt={"RENDER PERSON NAME"}
+          src={pictureUrl}
+          alt={name}
           className="card__image"
         />
         <div className="card__content">
-          <div className="card__title">{"RENDER NAME"}</div>
-          <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+          <div className="card__title">{name}</div>
+          <p className="card__text">
+            {display ? quote: bio }
+            </p>
           <div className="card__detail">
-            <p>{"RENDER TWITTER HANDLE"}</p>
+            <p>{twitter}</p>
             <p>
-              {
-                "CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"
-              }
+              {setBase(fromUSA)}
             </p>
           </div>
         </div>
